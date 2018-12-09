@@ -1,8 +1,11 @@
-<template>
-  <div id="app">
+<template id="app">
+  <v-app dark>
+    <v-toolbar></v-toolbar>
     <Callback />
-    <router-view/>
-  </div>
+    <v-container fluid>
+      <router-view/>
+    </v-container>
+  </v-app>
 </template>
 
 <script>

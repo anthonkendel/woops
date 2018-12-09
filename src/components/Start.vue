@@ -1,9 +1,9 @@
 <template>
   <div>
     <p>Start</p>
-    <button @click="onAuthorize">Authorize</button>
-    <button @click="onGetMe">Get me</button>
-    <button @click="onGetMyPlaylist">Get my playlists</button>
+    <v-btn @click="onAuthorize">Authorize</v-btn>
+    <v-btn @click="onGetMe">Get me</v-btn>
+    <v-btn @click="onGetMyPlaylist">Get my playlists</v-btn>
     <section>
       <h2>Me</h2>
       <div v-for="entry in Object.entries(me)" :key="entry[0]">
@@ -22,7 +22,7 @@
       <h3>Playlists items</h3>
       <div v-for="(item, index) in playlists.items" :key="index">
         <div v-for="entry in Object.entries(item)" :key="entry[0]">
-          <b >{{ entry[0] }}: </b>
+          <b  >{{ entry[0] }}: </b>
           <span>{{ entry[1] }}</span>
         </div>
       </div>
