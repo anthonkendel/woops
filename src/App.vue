@@ -1,8 +1,18 @@
 <template>
   <div id="app">
+    <Callback />
     <router-view/>
   </div>
 </template>
+
+<script>
+import Callback from '@/components/Callback';
+
+export default {
+  name: 'App',
+  components: { Callback },
+};
+</script>
 
 <style lang="scss">
 html {
