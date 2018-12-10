@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>Start</p>
-    <v-btn @click="onAuthorize">Authorize</v-btn>
+    <p>Start</p>    
     <v-btn @click="onGetMe">Get me</v-btn>
     <v-btn @click="onGetMyPlaylist">Get my playlists</v-btn>
     <section>
@@ -49,7 +48,6 @@ export default {
     playlists: { items: [] },
   }),
   methods: {
-    onAuthorize: () => SpotifyService.authorize(),
     async onGetMe() {
       const response = await SpotifyService.me(this.auth.accessToken);
       this.me = response;

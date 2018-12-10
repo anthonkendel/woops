@@ -1,19 +1,29 @@
 <template id="app">
   <v-app dark>
-    <v-toolbar></v-toolbar>
-    <Callback />
-    <v-container fluid>
-      <router-view/>
+    <Callback/>
+    <Toolbar/>
+    <v-container>     
+      <router-view v-if="auth.accessToken"/>
+      <Authorize v-else />
     </v-container>
   </v-app>
 </template>
 
 <script>
+import Authorize from '@/components/Authorize';
 import Callback from '@/components/Callback';
+import Toolbar from '@/components/Toolbar';
+import { mapState } from 'vuex';
+import { stateKey } from '@/store';
 
 export default {
   name: 'App',
-  components: { Callback },
+  computed: {
+    ...mapState({
+      auth: stateKey.auth,
+    }),
+  },
+  components: { Authorize, Callback, Toolbar },
 };
 </script>
 
