@@ -5,11 +5,14 @@
 <script>
 import { SpotifyService } from '@/services/spotify';
 import { mapState, mapActions } from 'vuex';
+import { stateKey, actionType } from '@/store';
 
 export default {
   name: 'Callback',
   computed: {
-    ...mapState(['auth']),
+    ...mapState({
+      auth: stateKey.auth,
+    }),
   },
   created() {
     const { accessToken, expiresIn } = SpotifyService.authFromCallback();
@@ -19,7 +22,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setAuth']),
+    ...mapActions({
+      setAuth: actionType.setAuth,
+    }),
   },
 };
 </script>
