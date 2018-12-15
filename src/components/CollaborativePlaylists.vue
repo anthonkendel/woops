@@ -4,9 +4,17 @@
       <v-card-title>Playlists</v-card-title>
       <v-list>
         <template v-for="(playlist, index) in collaborativePlaylists">
-          <v-list-tile @click="onClickPlaylist(playlist)" :key="playlist.id" avatar>
+          <v-list-tile
+            @click="onClickPlaylist(playlist)"
+            :key="playlist.id"
+            avatar
+          >
             <v-list-tile-avatar tile>
-              <img :src="getPlaylistImage(playlist)" alt="playlist image" height="40">
+              <img
+                :src="getPlaylistImage(playlist)"
+                alt="playlist image"
+                height="40"
+              >
             </v-list-tile-avatar>
 
             <v-list-tile-content>
@@ -22,11 +30,18 @@
               ></v-checkbox>
             </v-list-tile-action>
           </v-list-tile>
-          <v-divider v-if="!isLastPlaylist(index)" :key="playlist.id"/>
+          <v-divider
+            v-if="!isLastPlaylist(index)"
+            :key="playlist.id"
+          />
         </template>
       </v-list>
       <v-card-actions>
-        <v-btn color="purple" round disabled>New playlist</v-btn>
+        <v-btn
+          color="purple"
+          round
+          disabled
+        >New playlist</v-btn>
       </v-card-actions>
     </v-card>
   </v-flex>

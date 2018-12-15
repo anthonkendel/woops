@@ -1,7 +1,20 @@
 <template>
-  <v-layout align-space-around justify-center fill-height wrap>
-    <v-flex sm12 md4>
-      <v-layout align-space-around justify-center fill-height wrap>
+  <v-layout
+    align-space-around
+    justify-center
+    fill-height
+    wrap
+  >
+    <v-flex
+      sm12
+      md4
+    >
+      <v-layout
+        align-space-around
+        justify-center
+        fill-height
+        wrap
+      >
         <CollaborativePlaylists/>
         <v-flex sm12>
           INFORMATION SELECTED PLAYLIST
@@ -10,7 +23,10 @@
         </v-flex>
       </v-layout>
     </v-flex>
-    <v-flex sm12 md8>SONGS IN SELECTED PLAYLISTS</v-flex>
+    <v-flex
+      sm12
+      md8
+    >SONGS IN SELECTED PLAYLISTS</v-flex>
   </v-layout>
 </template>
 
