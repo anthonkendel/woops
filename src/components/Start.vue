@@ -12,15 +12,10 @@
       <v-layout
         align-space-around
         justify-center
-        fill-height
         wrap
       >
-        <CollaborativePlaylists/>
-        <v-flex sm12>
-          INFORMATION SELECTED PLAYLIST
-          CURRENTLY PLAYING SONG
-          PLAYBACK CONTROLS
-        </v-flex>
+        <Playlists />
+        <Info />
       </v-layout>
     </v-flex>
     <v-flex
@@ -31,14 +26,15 @@
 </template>
 
 <script>
-import { SpotifyService } from '@/services/spotify';
 import { mapState } from 'vuex';
+import { SpotifyService } from '@/services/spotify';
 import { stateKey } from '@/store';
-import CollaborativePlaylists from '@/components/CollaborativePlaylists';
+import Info from '@/components/Info';
+import Playlists from '@/components/Playlists';
 
 export default {
   name: 'Start',
-  components: { CollaborativePlaylists },
+  components: { Info, Playlists },
   computed: {
     ...mapState({
       auth: stateKey.auth,

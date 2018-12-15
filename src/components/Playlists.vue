@@ -1,5 +1,8 @@
 <template>
-  <v-flex sm12>
+  <v-flex
+    sm12
+    class="py-2"
+  >
     <v-card>
       <v-card-title>Playlists</v-card-title>
       <v-list>
@@ -23,7 +26,7 @@
 
             <v-list-tile-action>
               <v-checkbox
-                :input-value="playlist.id === selectedPlaylist"
+                :input-value="playlist.id === selectedPlaylist.id"
                 :ripple="false"
                 color="purple"
                 readonly
@@ -52,7 +55,7 @@ import { mapState, mapActions } from 'vuex';
 import { stateKey, actionType } from '@/store';
 
 export default {
-  name: 'CollaborativePlaylists',
+  name: 'Playlists',
   computed: {
     ...mapState({
       selectedPlaylist: stateKey.selectedPlaylist,
@@ -70,10 +73,10 @@ export default {
       loadPlaylists: actionType.loadPlaylists,
     }),
     onClickPlaylist(playlist) {
-      if (playlist.id === this.selectedPlaylist) {
-        this.setSelectedPlaylist(undefined);
+      if (playlist.id === this.selectedPlaylist.id) {
+        this.setSelectedPlaylist({});
       } else {
-        this.setSelectedPlaylist(playlist.id);
+        this.setSelectedPlaylist(playlist);
       }
     },
     getPlaylistImage(playlist) {

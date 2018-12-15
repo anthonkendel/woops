@@ -34,7 +34,7 @@ export default new Vuex.Store({
     },
 
     [stateKey.playlists]: [],
-    [stateKey.selectedPlaylist]: undefined,
+    [stateKey.selectedPlaylist]: {},
   },
   mutations: {
     [mutationType.setAuth]: (state, auth) => (state.auth = auth),
