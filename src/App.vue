@@ -2,9 +2,9 @@
   <v-app dark>
     <Callback/>
     <Toolbar/>
-    <v-container>     
+    <v-container>
       <router-view v-if="auth.accessToken"/>
-      <Authorize v-else />
+      <Authorize v-else/>
     </v-container>
   </v-app>
 </template>
