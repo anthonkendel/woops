@@ -84,7 +84,7 @@ export default {
       return toMinutesAndSeconds(currentProgress);
     },
     trackImage() {
-      const [image] = this.track.album.images || [];
+      const [image] = (this.track.album || {}).images || [];
       return image ? image.url || '' : '';
     },
     trackArtists() {
@@ -130,6 +130,7 @@ export default {
     async onPlayPause() {
       if (this.isPlaying) {
         await SpotifyService.pause(this.auth.accessToken);
+        this.loadCurrentPlayback();
       } else {
         await SpotifyService.play(
           {
@@ -137,6 +138,7 @@ export default {
           },
           this.auth.accessToken
         );
+        this.loadCurrentPlayback();
       }
     },
   },
