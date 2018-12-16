@@ -5,6 +5,17 @@
     class="py-2"
   >
     <v-card flat>
+      <v-img
+        :src="trackImage"
+        aspect-ratio="2.75"
+      />
+      <v-card-title primary-title>
+        <div>
+          <h2>{{ track.name }}</h2>
+          <div>{{ trackArtists }}</div>
+        </div>
+      </v-card-title>
+
       <v-layout wrap>
         <v-flex
           sm12
@@ -12,9 +23,9 @@
         >
           <v-progress-linear
             color="purple"
-            :value="progress"
+            :value="trackProgress"
           />
-          <p class="text-xs-center">{{ currentLength }} - {{ trackLength }}</p>
+          <p class="text-xs-center">{{ progressLength }} - {{ trackLength }}</p>
         </v-flex>
         <v-flex sm12>
           <v-layout justify-center>
@@ -56,18 +67,28 @@ export default {
       auth: stateKey.auth,
     }),
     isPlaying: vm => vm.currentPlayback.is_playing,
-    progress() {
+    track() {
+      return this.currentPlayback.item || {};
+    },
+    trackProgress() {
       const currentProgress = this.currentPlayback.progress_ms;
       const trackDuration = this.currentPlayback.item.duration_ms;
       return (currentProgress / trackDuration) * 100;
     },
-    currentLength() {
+    trackLength() {
+      const trackDuration = this.track.duration_ms || 0;
+      return toMinutesAndSeconds(trackDuration);
+    },
+    progressLength() {
       const currentProgress = this.currentPlayback.progress_ms;
       return toMinutesAndSeconds(currentProgress);
     },
-    trackLength() {
-      const trackDuration = this.currentPlayback.item.duration_ms;
-      return toMinutesAndSeconds(trackDuration);
+    trackImage() {
+      const [image] = this.track.album.images || [];
+      return image ? image.url || '' : '';
+    },
+    trackArtists() {
+      return (this.track.artists || []).map(artist => artist.name).join(', ');
     },
   },
   data: () => ({
@@ -75,14 +96,19 @@ export default {
     interval: undefined,
   }),
   watch: {
-    'selectedPlaylist.id'() {
-      if (!this.selectedPlaylist.id) {
-        this.stopInterval();
-      }
+    selectedPlaylist: {
+      handler() {
+        if (!this.selectedPlaylist.id) {
+          this.removeInterval();
+        }
+      },
+      deep: true,
     },
   },
   created() {
-    this.startInterval();
+    if (this.selectedPlaylist.id) {
+      this.startInterval();
+    }
   },
   methods: {
     ...mapActions({
@@ -95,7 +121,7 @@ export default {
         this.UPDATE_INTERVAL_IN_MS
       );
     },
-    stopInterval() {
+    removeInterval() {
       if (this.interval) {
         clearInterval(this.interval);
         this.clearCurrentPlayback();

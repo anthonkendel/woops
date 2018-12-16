@@ -57,11 +57,11 @@ export default {
   },
   methods: {
     getTrackImage(track) {
-      const [image] = track.album.images;
+      const [image] = track.album.images || [];
       return image ? image.url || '' : '';
     },
     getTrackArtists(track) {
-      return track.artists.map(artist => artist.name).join(', ');
+      return (track.artists || []).map(artist => artist.name).join(', ');
     },
     isLastTrack(index) {
       return this.tracks.length - 1 === index;
