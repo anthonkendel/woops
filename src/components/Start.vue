@@ -21,7 +21,21 @@
     <v-flex
       sm12
       md8
-    >SONGS IN SELECTED PLAYLISTS</v-flex>
+    >
+      <v-layout
+        align-space-around
+        justify-center
+        wrap
+      >
+        <v-flex sm12>
+          SEARCH AND ADD SONGS
+        </v-flex>
+        <v-flex sm12>
+          SONGS IN SELECTED PLAYLISTS
+        </v-flex>
+      </v-layout>
+    </v-flex>
+
   </v-layout>
 </template>
 

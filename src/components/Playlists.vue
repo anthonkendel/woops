@@ -3,7 +3,7 @@
     sm12
     class="py-2"
   >
-    <v-card>
+    <v-card flat>
       <v-card-title>Playlists</v-card-title>
       <v-list>
         <template v-for="(playlist, index) in collaborativePlaylists">
@@ -43,7 +43,7 @@
         <v-btn
           color="purple"
           round
-          disabled
+          flat
         >New playlist</v-btn>
       </v-card-actions>
     </v-card>

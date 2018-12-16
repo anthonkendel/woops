@@ -3,7 +3,7 @@
     sm12
     class="py-2"
   >
-    <v-card>
+    <v-card flat>
       <template v-if="selectedPlaylist.id">
         <v-img
           :src="selectedPlaylistImage"
@@ -19,7 +19,9 @@
         <v-card-actions>
           <v-btn
             :href="selectedPlaylistUrl"
-            color="cyan"
+            color="purple"
+            flat
+            round
           >Open in Spotify</v-btn>
         </v-card-actions>
       </template>
