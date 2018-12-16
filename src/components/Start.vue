@@ -30,9 +30,7 @@
         <v-flex sm12>
           SEARCH AND ADD SONGS
         </v-flex>
-        <v-flex sm12>
-          SONGS IN SELECTED PLAYLISTS
-        </v-flex>
+        <Tracks />
       </v-layout>
     </v-flex>
 
@@ -45,10 +43,11 @@ import { SpotifyService } from '@/services/spotify';
 import { stateKey } from '@/store';
 import Info from '@/components/Info';
 import Playlists from '@/components/Playlists';
+import Tracks from '@/components/Tracks';
 
 export default {
   name: 'Start',
-  components: { Info, Playlists },
+  components: { Info, Playlists, Tracks },
   computed: {
     ...mapState({
       auth: stateKey.auth,

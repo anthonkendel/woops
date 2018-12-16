@@ -52,4 +52,13 @@ export const SpotifyService = {
       .then(json => json)
       .catch(() => ({}));
   },
+
+  tracks(playlistId, accessToken) {
+    return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    })
+      .then(value => value.json())
+      .then(json => json)
+      .catch(() => ({}));
+  },
 };

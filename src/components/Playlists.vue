@@ -4,12 +4,16 @@
     class="py-2"
   >
     <v-card flat>
-      <v-card-title>Playlists</v-card-title>
+      <v-card-title>
+        <h2>Playlists</h2>
+      </v-card-title>
       <v-list>
-        <template v-for="(playlist, index) in collaborativePlaylists">
+        <div
+          v-for="(playlist, index) in collaborativePlaylists"
+          :key="playlist.id"
+        >
           <v-list-tile
             @click="onClickPlaylist(playlist)"
-            :key="playlist.id"
             avatar
           >
             <v-list-tile-avatar tile>
@@ -33,11 +37,8 @@
               ></v-checkbox>
             </v-list-tile-action>
           </v-list-tile>
-          <v-divider
-            v-if="!isLastPlaylist(index)"
-            :key="playlist.id"
-          />
-        </template>
+          <v-divider v-if="!isLastPlaylist(index)"/>
+        </div>
       </v-list>
       <v-card-actions>
         <v-btn
@@ -70,11 +71,14 @@ export default {
   methods: {
     ...mapActions({
       setSelectedPlaylist: actionType.setSelectedPlaylist,
+      clearTracks: actionType.clearTracks,
+      clearSelectedPlaylist: actionType.clearSelectedPlaylist,
       loadPlaylists: actionType.loadPlaylists,
     }),
     onClickPlaylist(playlist) {
       if (playlist.id === this.selectedPlaylist.id) {
-        this.setSelectedPlaylist({});
+        this.clearTracks();
+        this.clearSelectedPlaylist();
       } else {
         this.setSelectedPlaylist(playlist);
       }
