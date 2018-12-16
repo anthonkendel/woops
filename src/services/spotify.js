@@ -61,4 +61,39 @@ export const SpotifyService = {
       .then(json => json)
       .catch(() => ({}));
   },
+
+  playback(accessToken) {
+    return fetch(`https://api.spotify.com/v1/me/player`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    })
+      .then(value => value.json())
+      .then(json => json)
+      .catch(() => ({}));
+  },
+
+  play(body, accessToken) {
+    return fetch('https://api.spotify.com/v1/me/player/play', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    })
+      .then(value => value.json())
+      .then(json => json)
+      .catch(() => ({}));
+  },
+
+  pause(accessToken) {
+    return fetch('https://api.spotify.com/v1/me/player/pause', {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then(value => value.json())
+      .then(json => json)
+      .catch(() => ({}));
+  },
 };

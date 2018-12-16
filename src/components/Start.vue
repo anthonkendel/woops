@@ -16,6 +16,7 @@
       >
         <Playlists />
         <Info />
+        <Player />
       </v-layout>
     </v-flex>
     <v-flex
@@ -42,12 +43,13 @@ import { mapState } from 'vuex';
 import { SpotifyService } from '@/services/spotify';
 import { stateKey } from '@/store';
 import Info from '@/components/Info';
+import Player from '@/components/Player';
 import Playlists from '@/components/Playlists';
 import Tracks from '@/components/Tracks';
 
 export default {
   name: 'Start',
-  components: { Info, Playlists, Tracks },
+  components: { Info, Player, Playlists, Tracks },
   computed: {
     ...mapState({
       auth: stateKey.auth,

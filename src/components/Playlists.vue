@@ -73,12 +73,14 @@ export default {
       setSelectedPlaylist: actionType.setSelectedPlaylist,
       clearTracks: actionType.clearTracks,
       clearSelectedPlaylist: actionType.clearSelectedPlaylist,
+      clearCurrentPlayback: actionType.clearCurrentPlayback,
       loadPlaylists: actionType.loadPlaylists,
     }),
     onClickPlaylist(playlist) {
       if (playlist.id === this.selectedPlaylist.id) {
         this.clearTracks();
         this.clearSelectedPlaylist();
+        this.clearCurrentPlayback();
       } else {
         this.setSelectedPlaylist(playlist);
       }
