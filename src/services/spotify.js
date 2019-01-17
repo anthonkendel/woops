@@ -65,6 +65,7 @@ export const SpotifyService = {
   },
 
   playback(accessToken) {
+    // TODO: Handle 204 NO CONTENT. No content means no player found.
     return request({
       url: 'https://api.spotify.com/v1/me/player',
       headers: {

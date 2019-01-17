@@ -64,7 +64,7 @@ function toMinutesAndSeconds(milliseconds) {
 export default {
   name: 'SpotifyPlayerCard',
   data: () => ({
-    UPDATE_INTERVAL_IN_MS: 6000,
+    UPDATE_INTERVAL_IN_MS: 1000,
     interval: undefined,
   }),
   computed: {
@@ -99,13 +99,12 @@ export default {
     },
   },
   watch: {
-    selectedPlaylist: {
-      handler() {
-        if (!this.selectedPlaylist.id) {
-          this.removeInterval();
-        }
-      },
-      deep: true,
+    'selectedPlaylist.id'() {
+      if (!this.selectedPlaylist.id) {
+        this.removeInterval();
+      } else if (!this.interval) {
+        this.startInterval();
+      }
     },
   },
   created() {
@@ -127,6 +126,7 @@ export default {
     removeInterval() {
       if (this.interval) {
         clearInterval(this.interval);
+        this.interval = undefined;
         this.clearCurrentPlayback();
       }
     },
