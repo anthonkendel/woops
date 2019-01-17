@@ -15,22 +15,18 @@
         For the application to work correctly it will need access to your Spotify.
         Click one the authorize button below to enter website.
       </p>
-      <v-btn
-        center
-        large
-        round
-        color="primary"
-        @click="onAuthorize"
-      >Authorize</v-btn>
+      <AuthorizeButton />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import AuthorizeButton from '@/components/AuthorizeButton';
 import { SpotifyService } from '@/services/spotify';
 
 export default {
   name: 'Authorize',
+  components: { AuthorizeButton },
   methods: {
     onAuthorize: () => SpotifyService.authorize(),
   },

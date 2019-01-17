@@ -1,8 +1,4 @@
 <template>
-  <v-flex
-    sm12
-    class="py-2"
-  >
     <v-card flat>
       <template v-if="selectedPlaylist.id">
         <v-img
@@ -31,7 +27,6 @@
         </v-card-title>
       </template>
     </v-card>
-  </v-flex>
 </template>
 
 <script>

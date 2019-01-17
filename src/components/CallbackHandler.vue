@@ -8,7 +8,7 @@ import { mapState, mapActions } from 'vuex';
 import { stateKey, actionType } from '@/store';
 
 export default {
-  name: 'Callback',
+  name: 'CallbackHandler',
   computed: {
     ...mapState({
       auth: stateKey.auth,

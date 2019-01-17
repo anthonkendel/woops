@@ -1,20 +1,20 @@
 <template id="app">
   <v-app dark>
-    <Callback/>
-    <Toolbar/>
+    <CallbackHandler />
+    <TheToolbar />
     <v-container>
-      <router-view v-if="auth.accessToken"/>
-      <Authorize v-else/>
+      <router-view v-if="auth.accessToken" />
+      <Authorize v-else />
     </v-container>
   </v-app>
 </template>
 
 <script>
-import Authorize from '@/components/Authorize';
-import Callback from '@/components/Callback';
-import Toolbar from '@/components/Toolbar';
 import { mapState } from 'vuex';
 import { stateKey } from '@/store';
+import Authorize from '@/views/Authorize';
+import CallbackHandler from '@/components/CallbackHandler';
+import TheToolbar from '@/components/TheToolbar';
 
 export default {
   name: 'App',
@@ -23,7 +23,11 @@ export default {
       auth: stateKey.auth,
     }),
   },
-  components: { Authorize, Callback, Toolbar },
+  components: {
+    Authorize,
+    CallbackHandler,
+    TheToolbar,
+  },
 };
 </script>
 

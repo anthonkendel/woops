@@ -14,9 +14,24 @@
         justify-center
         wrap
       >
-        <Playlists />
-        <Info />
-        <Player />
+        <v-flex
+          sm12
+          class="py-2"
+        >
+          <CollaborativePlaylistsCard />
+        </v-flex>
+        <v-flex
+          sm12
+          class="py-2"
+        >
+          <SelectedPlaylistCard />
+        </v-flex>
+        <v-flex
+          sm12
+          class="py-2"
+        >
+          <SpotifyPlayerCard />
+        </v-flex>
       </v-layout>
     </v-flex>
     <v-flex
@@ -31,7 +46,12 @@
         <v-flex sm12>
           SEARCH AND ADD SONGS
         </v-flex>
-        <Tracks />
+        <v-flex
+          sm12
+          class="py-2 pl-2"
+        >
+          <SelectedPlaylistTracksCard />
+        </v-flex>
       </v-layout>
     </v-flex>
 
@@ -42,14 +62,19 @@
 import { mapState } from 'vuex';
 import { SpotifyService } from '@/services/spotify';
 import { stateKey } from '@/store';
-import Info from '@/components/Info';
-import Player from '@/components/Player';
-import Playlists from '@/components/Playlists';
-import Tracks from '@/components/Tracks';
+import CollaborativePlaylistsCard from '@/components/CollaborativePlaylistsCard';
+import SelectedPlaylistCard from '@/components/SelectedPlaylistCard';
+import SelectedPlaylistTracksCard from '@/components/SelectedPlaylistTracksCard';
+import SpotifyPlayerCard from '@/components/SpotifyPlayerCard';
 
 export default {
   name: 'Home',
-  components: { Info, Player, Playlists, Tracks },
+  components: {
+    CollaborativePlaylistsCard,
+    SelectedPlaylistCard,
+    SelectedPlaylistTracksCard,
+    SpotifyPlayerCard,
+  },
   computed: {
     ...mapState({
       auth: stateKey.auth,

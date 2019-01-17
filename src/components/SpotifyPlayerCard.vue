@@ -1,50 +1,47 @@
 <template>
-  <v-flex
+  <v-card
     v-if="selectedPlaylist.id"
-    sm12
-    class="py-2"
+    flat
   >
-    <v-card flat>
-      <v-img
-        :src="trackImage"
-        aspect-ratio="2.75"
-      />
-      <v-card-title primary-title>
-        <div>
-          <h2>{{ track.name }}</h2>
-          <div>{{ trackArtists }}</div>
-        </div>
-      </v-card-title>
+    <v-img
+      :src="trackImage"
+      aspect-ratio="2.75"
+    />
+    <v-card-title primary-title>
+      <div>
+        <h2>{{ track.name }}</h2>
+        <div>{{ trackArtists }}</div>
+      </div>
+    </v-card-title>
 
-      <v-layout wrap>
-        <v-flex
-          sm12
-          v-if="currentPlayback.is_playing"
-        >
-          <v-progress-linear
-            color="purple"
-            :value="trackProgress"
-          />
-          <p class="text-xs-center">{{ progressLength }} - {{ trackLength }}</p>
-        </v-flex>
-        <v-flex sm12>
-          <v-layout justify-center>
-            <v-card-actions class="text-sm-center">
-              <v-btn
-                @click="onPlayPause"
-                fab
-                depressed
-                color="primary"
-              >
-                <v-icon v-if="isPlaying">pause</v-icon>
-                <v-icon v-else>play_arrow</v-icon>
-              </v-btn>
-            </v-card-actions>
-          </v-layout>
-        </v-flex>
-      </v-layout>
-    </v-card>
-  </v-flex>
+    <v-layout wrap>
+      <v-flex
+        sm12
+        v-if="currentPlayback.is_playing"
+      >
+        <v-progress-linear
+          color="purple"
+          :value="trackProgress"
+        />
+        <p class="text-xs-center">{{ progressLength }} - {{ trackLength }}</p>
+      </v-flex>
+      <v-flex sm12>
+        <v-layout justify-center>
+          <v-card-actions class="text-sm-center">
+            <v-btn
+              @click="onPlayPause"
+              fab
+              depressed
+              color="primary"
+            >
+              <v-icon v-if="isPlaying">pause</v-icon>
+              <v-icon v-else>play_arrow</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-card>
 </template>
 
 <script>
@@ -59,7 +56,7 @@ function toMinutesAndSeconds(milliseconds) {
 }
 
 export default {
-  name: 'Player',
+  name: 'SpotifyPlayerCard',
   computed: {
     ...mapState({
       selectedPlaylist: stateKey.selectedPlaylist,
