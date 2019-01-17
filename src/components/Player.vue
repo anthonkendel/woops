@@ -34,7 +34,7 @@
                 @click="onPlayPause"
                 fab
                 depressed
-                color="purple"
+                color="primary"
               >
                 <v-icon v-if="isPlaying">pause</v-icon>
                 <v-icon v-else>play_arrow</v-icon>

@@ -19,7 +19,7 @@
         center
         large
         round
-        color="purple"
+        color="primary"
         @click="onAuthorize"
       >Authorize</v-btn>
     </v-flex>

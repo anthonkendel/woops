@@ -32,7 +32,7 @@
               <v-checkbox
                 :input-value="playlist.id === selectedPlaylist.id"
                 :ripple="false"
-                color="purple"
+                color="primary"
                 readonly
               ></v-checkbox>
             </v-list-tile-action>
@@ -42,7 +42,7 @@
       </v-list>
       <v-card-actions>
         <v-btn
-          color="purple"
+          color="primary"
           round
           flat
         >New playlist</v-btn>

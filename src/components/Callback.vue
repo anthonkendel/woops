@@ -18,7 +18,7 @@ export default {
     const { accessToken, expiresIn } = SpotifyService.authFromCallback();
     if (accessToken && expiresIn) {
       this.setAuth({ accessToken, expiresIn });
-      this.$router.push({ name: 'Start' });
+      this.$router.push({ name: 'Home' });
     }
   },
   methods: {

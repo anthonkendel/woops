@@ -19,7 +19,7 @@
         <v-card-actions>
           <v-btn
             :href="selectedPlaylistUrl"
-            color="purple"
+            color="primary"
             flat
             round
           >Open in Spotify</v-btn>

@@ -48,7 +48,7 @@ import Playlists from '@/components/Playlists';
 import Tracks from '@/components/Tracks';
 
 export default {
-  name: 'Start',
+  name: 'Home',
   components: { Info, Player, Playlists, Tracks },
   computed: {
     ...mapState({
