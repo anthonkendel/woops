@@ -54,7 +54,6 @@
         </v-flex>
       </v-layout>
     </v-flex>
-
   </v-layout>
 </template>
 
@@ -75,6 +74,10 @@ export default {
     SelectedPlaylistTracksCard,
     SpotifyPlayerCard,
   },
+  data: () => ({
+    me: {},
+    playlists: { items: [] },
+  }),
   computed: {
     ...mapState({
       auth: stateKey.auth,
@@ -82,10 +85,6 @@ export default {
     collaborative: vm =>
       vm.playlists.items.filter(playlist => playlist.collaborative),
   },
-  data: () => ({
-    me: {},
-    playlists: { items: [] },
-  }),
   methods: {
     async onGetMe() {
       const response = await SpotifyService.me(this.auth.accessToken);

@@ -9,8 +9,8 @@
         :key="playlist.id"
       >
         <v-list-tile
-          @click="onClickPlaylist(playlist)"
           avatar
+          @click="onClickPlaylist(playlist)"
         >
           <v-list-tile-avatar tile>
             <img
@@ -30,10 +30,10 @@
               :ripple="false"
               color="primary"
               readonly
-            ></v-checkbox>
+            />
           </v-list-tile-action>
         </v-list-tile>
-        <v-divider v-if="!isLastPlaylist(index)"/>
+        <v-divider v-if="!isLastPlaylist(index)" />
       </div>
     </v-list>
     <v-card-actions>
@@ -41,7 +41,9 @@
         color="primary"
         round
         flat
-      >New playlist</v-btn>
+      >
+        New playlist
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>

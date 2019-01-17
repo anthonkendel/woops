@@ -26,7 +26,7 @@
               </v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-divider v-if="!isLastTrack(index)"/>
+          <v-divider v-if="!isLastTrack(index)" />
         </div>
       </v-list>
     </template>

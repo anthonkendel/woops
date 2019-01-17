@@ -10,7 +10,9 @@
       lg4
       class="text-xs-center"
     >
-      <h2 class="display-3">Welcome to Woops!</h2>
+      <h2 class="display-3">
+        Welcome to Woops!
+      </h2>
       <p class="body-2">
         For the application to work correctly it will need access to your Spotify.
         Click one the authorize button below to enter website.

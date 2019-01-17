@@ -16,26 +16,32 @@
 
     <v-layout wrap>
       <v-flex
-        sm12
         v-if="currentPlayback.is_playing"
+        sm12
       >
         <v-progress-linear
           color="purple"
           :value="trackProgress"
         />
-        <p class="text-xs-center">{{ progressLength }} - {{ trackLength }}</p>
+        <p class="text-xs-center">
+          {{ progressLength }} - {{ trackLength }}
+        </p>
       </v-flex>
       <v-flex sm12>
         <v-layout justify-center>
           <v-card-actions class="text-sm-center">
             <v-btn
-              @click="onPlayPause"
               fab
               depressed
               color="primary"
+              @click="onPlayPause"
             >
-              <v-icon v-if="isPlaying">pause</v-icon>
-              <v-icon v-else>play_arrow</v-icon>
+              <v-icon v-if="isPlaying">
+                pause
+              </v-icon>
+              <v-icon v-else>
+                play_arrow
+              </v-icon>
             </v-btn>
           </v-card-actions>
         </v-layout>
@@ -57,6 +63,10 @@ function toMinutesAndSeconds(milliseconds) {
 
 export default {
   name: 'SpotifyPlayerCard',
+  data: () => ({
+    UPDATE_INTERVAL_IN_MS: 6000,
+    interval: undefined,
+  }),
   computed: {
     ...mapState({
       selectedPlaylist: stateKey.selectedPlaylist,
@@ -88,10 +98,6 @@ export default {
       return (this.track.artists || []).map(artist => artist.name).join(', ');
     },
   },
-  data: () => ({
-    UPDATE_INTERVAL_IN_MS: 6000,
-    interval: undefined,
-  }),
   watch: {
     selectedPlaylist: {
       handler() {

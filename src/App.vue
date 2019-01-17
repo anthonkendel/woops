@@ -18,15 +18,15 @@ import TheToolbar from '@/components/TheToolbar';
 
 export default {
   name: 'App',
-  computed: {
-    ...mapState({
-      auth: stateKey.auth,
-    }),
-  },
   components: {
     Authorize,
     CallbackHandler,
     TheToolbar,
+  },
+  computed: {
+    ...mapState({
+      auth: stateKey.auth,
+    }),
   },
 };
 </script>

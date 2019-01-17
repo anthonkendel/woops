@@ -1,32 +1,34 @@
 <template>
-    <v-card flat>
-      <template v-if="selectedPlaylist.id">
-        <v-img
-          :src="selectedPlaylistImage"
-          aspect-ratio="2.75"
-        />
-        <v-card-title primary-title>
-          <div>
-            <h2>{{ selectedPlaylist.name }}</h2>
-            <div>There is {{ slectedPlaylistTotalTracks }} tracks in this playlist.</div>
-          </div>
-        </v-card-title>
+  <v-card flat>
+    <template v-if="selectedPlaylist.id">
+      <v-img
+        :src="selectedPlaylistImage"
+        aspect-ratio="2.75"
+      />
+      <v-card-title primary-title>
+        <div>
+          <h2>{{ selectedPlaylist.name }}</h2>
+          <div>There is {{ slectedPlaylistTotalTracks }} tracks in this playlist.</div>
+        </div>
+      </v-card-title>
 
-        <v-card-actions>
-          <v-btn
-            :href="selectedPlaylistUrl"
-            color="primary"
-            flat
-            round
-          >Open in Spotify</v-btn>
-        </v-card-actions>
-      </template>
-      <template v-else>
-        <v-card-title>
-          <h2>No playlist selected</h2>
-        </v-card-title>
-      </template>
-    </v-card>
+      <v-card-actions>
+        <v-btn
+          :href="selectedPlaylistUrl"
+          color="primary"
+          flat
+          round
+        >
+          Open in Spotify
+        </v-btn>
+      </v-card-actions>
+    </template>
+    <template v-else>
+      <v-card-title>
+        <h2>No playlist selected</h2>
+      </v-card-title>
+    </template>
+  </v-card>
 </template>
 
 <script>
