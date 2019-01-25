@@ -64,6 +64,18 @@ export const SpotifyService = {
     });
   },
 
+  search(query, accessToken) {
+    const searchQuery = `q=${query}`;
+    const searchTypes = 'type=track';
+    const urlSearch = encodeURI(`${searchQuery}&${searchTypes}`);
+    return request({
+      url: `https://api.spotify.com/v1/search?${urlSearch}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  },
+
   playback(accessToken) {
     // TODO: Handle 204 NO CONTENT. No content means no player found.
     return request({

@@ -43,8 +43,22 @@
         justify-center
         wrap
       >
-        <v-flex sm12>
-          SEARCH AND ADD SONGS
+        <v-flex
+          sm12
+          class="pt-2 pl-2"
+        >
+          <v-card
+            class="pt-2 px-4"
+            flat
+          >
+            <SearchTracksInput />
+          </v-card>
+        </v-flex>
+        <v-flex
+          sm12
+          class="pt-2 pl-2"
+        >
+          <SearchTracksResultCard />
         </v-flex>
         <v-flex
           sm12
@@ -58,10 +72,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { SpotifyService } from '@/services/spotify';
-import { stateKey } from '@/store';
 import CollaborativePlaylistsCard from '@/components/CollaborativePlaylistsCard';
+import SearchTracksResultCard from '@/components/SearchTracksResultCard';
+import SearchTracksInput from '@/components/SearchTracksInput';
 import SelectedPlaylistCard from '@/components/SelectedPlaylistCard';
 import SelectedPlaylistTracksCard from '@/components/SelectedPlaylistTracksCard';
 import SpotifyPlayerCard from '@/components/SpotifyPlayerCard';
@@ -70,30 +83,11 @@ export default {
   name: 'Home',
   components: {
     CollaborativePlaylistsCard,
+    SearchTracksResultCard,
     SelectedPlaylistCard,
     SelectedPlaylistTracksCard,
     SpotifyPlayerCard,
-  },
-  data: () => ({
-    me: {},
-    playlists: { items: [] },
-  }),
-  computed: {
-    ...mapState({
-      auth: stateKey.auth,
-    }),
-    collaborative: vm =>
-      vm.playlists.items.filter(playlist => playlist.collaborative),
-  },
-  methods: {
-    async onGetMe() {
-      const response = await SpotifyService.me(this.auth.accessToken);
-      this.me = response;
-    },
-    async onGetMyPlaylist() {
-      const response = await SpotifyService.playlists(this.auth.accessToken);
-      this.playlists = response;
-    },
+    SearchTracksInput,
   },
 };
 </script>

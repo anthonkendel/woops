@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export const stateKey = {
   auth: 'auth',
   tracks: 'tracks',
+  searchTracks: 'searchTracks',
   playlists: 'playlists',
   selectedPlaylist: 'selectedPlaylist',
   currentPlayback: 'currentPlayback',
@@ -15,12 +16,14 @@ export const stateKey = {
 export const mutationType = {
   setAuth: 'setAuth',
   setTracks: 'setTracks',
+  setSearchTracks: 'setSearchTracks',
   setPlaylists: 'setPlaylists',
   setSelectedPlaylist: 'setSelectedPlaylist',
   setCurrentPlayback: 'setCurrentPlayback',
 
   clearAuth: 'clearAuth',
   clearTracks: 'clearTracks',
+  clearSearchTracks: 'clearSearchTracks',
   clearPlaylists: 'clearPlaylists',
   clearSelectedPlaylist: 'clearSelectedPlaylist',
   clearCurrentPlayback: 'clearCurrentPlayback',
@@ -29,6 +32,7 @@ export const mutationType = {
 export const actionType = {
   setAuth: 'setAuth',
   setTracks: 'setTracks',
+  setSearchTracks: 'setSearchTracks',
   setPlaylists: 'setPlaylists',
   setSelectedPlaylist: 'setSelectedPlaylist',
   setCurrentPlayback: 'setCurrentPlayback',
@@ -40,6 +44,7 @@ export const actionType = {
   clearCurrentPlayback: 'clearCurrentPlayback',
 
   loadTracks: 'loadTracks',
+  loadSearchTracks: 'loadSearchTracks',
   loadPlaylists: 'loadPlaylists',
   loadCurrentPlayback: 'loadCurrentPlayback',
 };
@@ -51,6 +56,7 @@ export default new Vuex.Store({
       expiresIn: -1,
     },
     [stateKey.tracks]: [],
+    [stateKey.searchTracks]: [],
     [stateKey.playlists]: [],
     [stateKey.selectedPlaylist]: {},
     [stateKey.currentPlayback]: {},
@@ -58,6 +64,8 @@ export default new Vuex.Store({
   mutations: {
     [mutationType.setAuth]: (state, auth) => (state.auth = auth),
     [mutationType.setTracks]: (state, tracks) => (state.tracks = tracks),
+    [mutationType.setSearchTracks]: (state, searchTracks) =>
+      (state.searchTracks = searchTracks),
     [mutationType.setPlaylists]: (state, playlists) =>
       (state.playlists = playlists),
     [mutationType.setSelectedPlaylist]: (state, selectedPlaylist) =>
@@ -71,6 +79,7 @@ export default new Vuex.Store({
         expiresIn: -1,
       }),
     [mutationType.clearTracks]: state => (state.tracks = []),
+    [mutationType.clearSearchTracks]: state => (state.searchTracks = []),
     [mutationType.clearPlaylists]: state => (state.playlists = []),
     [mutationType.clearSelectedPlaylist]: state =>
       (state.selectedPlaylist = {}),
@@ -81,6 +90,8 @@ export default new Vuex.Store({
       commit(mutationType.setAuth, auth),
     [actionType.setTracks]: ({ commit }, tracks) =>
       commit(mutationType.setTracks, tracks),
+    [actionType.setSearchTracks]: ({ commit }, searchTracks) =>
+      commit(mutationType.setSearchTracks, searchTracks),
     [actionType.setPlaylists]: ({ commit }, playlists) =>
       commit(mutationType.setPlaylists, playlists),
     [actionType.setSelectedPlaylist]({ commit, dispatch }, selectedPlaylist) {
@@ -107,6 +118,13 @@ export default new Vuex.Store({
         const response = await SpotifyService.tracks(playlistId, accessToken);
         const tracks = response.items.map(item => item.track);
         commit(mutationType.setTracks, tracks);
+      }
+    },
+    async [actionType.loadSearchTracks]({ commit, state }, query) {
+      const accessToken = state.auth.accessToken;
+      if (accessToken) {
+        const { tracks } = await SpotifyService.search(query, accessToken);
+        commit(mutationType.setSearchTracks, tracks.items);
       }
     },
     async [actionType.loadPlaylists]({ commit, state }) {
