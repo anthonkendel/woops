@@ -4,13 +4,16 @@
       <v-card-title>
         <h2>Tracks</h2>
       </v-card-title>
-      
+
       <v-list>
         <div
           v-for="(track, index) in tracks"
           :key="`${track.id}-${index}`"
         >
-          <v-list-tile @click="() => undefined">
+          <v-list-tile
+            :color="track.id === currentPlaybackTrackId ? 'primary' : undefined"
+            @click="() => undefined"
+          >
             <v-list-tile-avatar tile>
               <img
                 :src="getTrackImage(track)"
@@ -21,9 +24,7 @@
 
             <v-list-tile-content>
               <v-list-tile-title>{{ track.name }}</v-list-tile-title>
-              <v-list-tile-sub-title>
-                {{ track.album.name }} - {{ getTrackArtists(track) }}
-              </v-list-tile-sub-title>
+              <v-list-tile-sub-title>{{ track.album.name }} - {{ getTrackArtists(track) }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider v-if="!isLastTrack(index)" />
@@ -47,8 +48,12 @@ export default {
   computed: {
     ...mapState({
       selectedPlaylist: stateKey.selectedPlaylist,
+      currentPlayback: stateKey.currentPlayback,
       tracks: stateKey.tracks,
     }),
+    currentPlaybackTrackId() {
+      return this.currentPlayback.item.id;
+    },
   },
   methods: {
     getTrackImage(track) {
