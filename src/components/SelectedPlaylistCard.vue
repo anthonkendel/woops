@@ -36,7 +36,7 @@ import { mapState } from 'vuex';
 import { stateKey } from '@/store';
 
 export default {
-  name: 'Info',
+  name: 'SelectedPlaylistCard',
   computed: {
     ...mapState({
       selectedPlaylist: stateKey.selectedPlaylist,
